@@ -1,5 +1,5 @@
-#ifndef HEADER_H_tubes.h
-#define HEADER_H_tubes.h
+#ifndef tubes_H_INCLUDED
+#define tubes_H_INCLUDED
 
 #include <iostream>
 using namespace std;
@@ -56,5 +56,11 @@ void createElmDepartmen(infotypeDepartmen x, alamatDepartmen &p);
 void createElmPegawai(infotypePegawai x, alamatPegawai &p);
 void insertLastPegawai(listPegawai &L, alamatPegawai p);
 void insertLastDepartmen(listDepartmen &L, alamatDepartmen p);
+alamatPegawai searchPegawai(listPegawai L, string nip);
+alamatDepartmen searchDepartmen(listDepartmen L, string nama);
+void printPegawai(listPegawai L);
+void printDepartmen(listDepartmen L);
+void printDepartmenbyPegawai(listPegawai LP, string nama, string nip);
+void memasangkanPegawai(listPegawai &LP, listDepartmen &LD,string nama, string nip, string namaDepartmen);
 
 #endif
