@@ -20,7 +20,6 @@ struct pegawai{
     string nama;
     string nip;
     string jabatan;
-    string golongan;
     int gaji;
 };
 
@@ -60,7 +59,14 @@ alamatPegawai searchPegawai(listPegawai L, string nip);
 alamatDepartmen searchDepartmen(listDepartmen L, string nama);
 void printPegawai(listPegawai L);
 void printDepartmen(listDepartmen L);
-void printDepartmenbyPegawai(listPegawai LP, string nama, string nip);
+void printDepartmenbyPegawai(listPegawai LP);
 void memasangkanPegawai(listPegawai &LP, listDepartmen &LD,string nama, string nip, string namaDepartmen);
+infotypeDepartmen createDepartment(string nama, string kode);
+void deletePegawai(listPegawai &LP,  string nip);
+void deleteFirstPegawai(listPegawai &L, alamatPegawai &p);
+void deleteLastPegawai(listPegawai &L, alamatPegawai &p);
+void deleteFirstDepartmen(listDepartmen &L, alamatDepartmen &p);
+void menampilkanPegawaiPalingBanyak(listDepartmen LD, listPegawai LP);
+void menghitungJumlahPegawaiPalingSedikit(listDepartmen LD, listPegawai LP);
 
 #endif

@@ -1,4 +1,5 @@
 #include "D:\Kuliah\Tingkat 2\SMT 3\STD\Tubes\tubes.h"
+#include <cstring>
 
 int main()
 {
@@ -7,24 +8,57 @@ int main()
     createListPegawai(LP);
     createListDepartmen(LD);
     infotypeDepartmen x;
-    x.nama = "Keuangan";
-    x.kode = "K";
-    x.jumlahPegawai = 0;
     alamatDepartmen p;
+    //membuat departmen keuangan
+    x = createDepartment("Keuangan", "KUG");
+    createElmDepartmen(x, p);
+    insertLastDepartmen(LD, p);
+    //membuat departmen SDM
+    x = createDepartment("Sumber Daya Manusia", "SDM");
+    createElmDepartmen(x, p);
+    insertLastDepartmen(LD, p);
+    //membuat departmen Administrasi
+    x = createDepartment("Administrasi", "ADM");
     createElmDepartmen(x, p);
     insertLastDepartmen(LD, p);
     infotypePegawai y;
-    y.nama = "Rizki";
-    y.nip = "123";
-    y.jabatan = "Manager";
-    y.golongan = "A";
-    y.gaji = 1000000;
-    alamatPegawai q;
-    createElmPegawai(y, q);
-    insertLastPegawai(LP, q);
-    memasangkanPegawai(LP, LD,"Rizki" ,"123", "Keuangan");
-    printPegawai(LP);
+    //proses input pegawai dan memasangkannya ke departmen berdasar nip
+    for(int i = 0; i < 2; i++){
+        cout << "Masukkan nama pegawai: ";
+        cin >> y.nama;
+        cout << "Masukkan nip pegawai: ";
+        cin >> y.nip;
+        cout << "Masukkan jabatan pegawai: ";
+        cin >> y.jabatan;
+        cout << "Masukkan gaji pegawai: ";
+        cin >> y.gaji;
+        alamatPegawai q;
+        createElmPegawai(y, q);
+        insertLastPegawai(LP, q);
+        char *cstr = new char[y.nip.length() + 1];
+        strcpy(cstr, y.nip.c_str());
+        if(cstr[0] == '2'){
+            memasangkanPegawai(LP, LD,y.nama, y.nip, "SDM");
+        }else if(cstr[0] == '3'){
+            memasangkanPegawai(LP, LD,y.nama, y.nip, "KUG");
+        }else{
+            memasangkanPegawai(LP, LD,y.nama, y.nip, "ADM");
+        }
+    }
     printDepartmen(LD);
-    printDepartmenbyPegawai(LP, "Rizki", "123");
+    printPegawai(LP);
+    cout<<endl;
+    printDepartmenbyPegawai(LP);
+    cout<<endl;
+    string NIP;
+    cout<<"Pegawai yang keluar";
+    cin>>NIP;
+    deletePegawai(LP,  NIP);
+    printDepartmen(LD);
+    printPegawai(LP);
+    cout<<endl;
+    menghitungJumlahPegawaiPalingSedikit(LD, LP);
+    cout<<endl;
+    menampilkanPegawaiPalingBanyak(LD, LP);
     return 0;
 }
